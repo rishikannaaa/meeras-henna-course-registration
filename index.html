@@ -9,11 +9,15 @@
       font-family: Arial, sans-serif;
       background: #fffaf5;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .hero {
       text-align: center;
       margin-top: 50px;
+      flex: 1;
     }
 
     h1 {
@@ -40,14 +44,35 @@
     .btn:hover {
       background-color: #8e4c02;
     }
+
+    nav {
+      background: #b45f04;
+      padding: 10px 20px;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #f4e3d7;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #5a3e1b;
+      border-top: 1px solid #ddd;
+      margin-top: auto;
+    }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav style="background: #b45f04; padding: 10px 20px;">
-    <a href="index.html" style="color: white; margin-right: 15px; text-decoration: none;">Home</a>
-    <a href="registration.html" style="color: white; margin-right: 15px; text-decoration: none;">Register</a>
-    <a href="payment.html" style="color: white; text-decoration: none;" onclick="return checkAccess()">Payment</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="registration.html">Register</a>
+    <a href="payment.html" onclick="return checkAccess()">Payment</a>
   </nav>
 
   <div class="hero">
@@ -55,6 +80,13 @@
     <p>Join our beginner to advanced henna design classes. Learn the art, express your creativity, and start your own journey!</p>
     <a href="registration.html" class="btn">Register Now</a>
   </div>
+
+  <footer>
+    <p><strong>📞 Contact Us</strong></p>
+    <p>📧 Email: meerashennaart@gmail.com</p>
+    <p>📱 Phone: +91 98765 43210</p>
+    <p>💬 For any queries, feel free to reach out anytime!</p>
+  </footer>
 
   <script>
     function checkAccess() {
