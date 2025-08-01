@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meera's Henna Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8f2;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #b45f04;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #b45f04;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #8e4c02;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Register for Mehndi</h2>
+    <form id="registrationForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="batch">Batch Number:</label>
+      <input type="text" id="batch" required />
+
+      <label for="month">Joining Month:</label>
+      <select id="month" required>
+        <option value="">-- Select Month --</option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+      </select>
+
+      <label for="whatsapp">WhatsApp Number:</label>
+      <input type="tel" id="whatsapp" pattern="[0-9]{10}" required placeholder="10-digit number" />
+
+      <label for="payment">Payment Number:</label>
+      <input type="tel" id="payment" pattern="[0-9]{10}" required placeholder="GPay/PhonePe number" />
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const batch = document.getElementById('batch').value.trim();
+      const month = document.getElementById('month').value;
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const payment = document.getElementById('payment').value.trim();
+
+      // Validate fields
+      if (!name || !batch || !month || !whatsapp || !payment) {
+        alert("Please fill all fields correctly.");
+        return;
+      }
+
+      // Save to localStorage
+      localStorage.setItem('name', name);
+      localStorage.setItem('batch', batch);
+      localStorage.setItem('month', month);
+      localStorage.setItem('whatsapp', whatsapp);
+      localStorage.setItem('payment', payment);
+      localStorage.setItem('isRegistered', 'true');
+
+      // Redirect to payment page
+      window.location.href = 'payment.html';
+    });
+  </script>
+</body>
+</html>

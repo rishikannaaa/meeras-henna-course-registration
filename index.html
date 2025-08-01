@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meera's Henna Art</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf5;
+      padding: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #b45f04;
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 30px;
+      background-color: #b45f04;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #8e4c02;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav style="background: #b45f04; padding: 10px 20px;">
+    <a href="index.html" style="color: white; margin-right: 15px; text-decoration: none;">Home</a>
+    <a href="registration.html" style="color: white; margin-right: 15px; text-decoration: none;">Register</a>
+    <a href="payment.html" style="color: white; text-decoration: none;" onclick="return checkAccess()">Payment</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Welcome to Meera's Henna Art 🌿</h1>
+    <p>Join our beginner to advanced henna design classes. Learn the art, express your creativity, and start your own journey!</p>
+    <a href="registration.html" class="btn">Register Now</a>
+  </div>
+
+  <script>
+    function checkAccess() {
+      if (localStorage.getItem('isRegistered') !== 'true') {
+        alert("Please register first!");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
