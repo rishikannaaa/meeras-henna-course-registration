@@ -88,17 +88,42 @@ button{
 </div>
 
 <script>
-document.getElementById("registrationForm").addEventListener("submit",function(e){
+document.getElementById("registrationForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  localStorage.setItem("name",name.value.trim());
-  localStorage.setItem("batch",batch.value.trim());
-  localStorage.setItem("month",month.value);
-  localStorage.setItem("whatsapp",whatsapp.value.trim());
-  localStorage.setItem("payment",payment.value.trim());
-  localStorage.setItem("isRegistered","true");
+  const name = document.getElementById("name").value.trim();
+  const batch = document.getElementById("batch").value.trim();
+  const month = document.getElementById("month").value;
+  const whatsapp = document.getElementById("whatsapp").value.trim();
+  const payment = document.getElementById("payment").value.trim();
 
-  window.location.href="payment.html";
+  if (!name || !batch || !month || !whatsapp || !payment) {
+    alert("Please fill all fields correctly.");
+    return;
+  }
+
+  // Save registration details
+  localStorage.setItem("name", name);
+  localStorage.setItem("batch", batch);
+  localStorage.setItem("month", month);
+  localStorage.setItem("whatsapp", whatsapp);
+  localStorage.setItem("payment", payment);
+
+  // Safety check: class must be selected
+  const className = localStorage.getItem("className");
+  const amount = localStorage.getItem("amount");
+
+  if (!className || !amount) {
+    alert("Please select a class first.");
+    window.location.href = "classes.html";
+    return;
+  }
+
+  // Mark user registered
+  localStorage.setItem("isRegistered", "true");
+
+  // Redirect to payment
+  window.location.href = "payment.html";
 });
 </script>
 
