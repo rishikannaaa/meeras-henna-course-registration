@@ -111,16 +111,47 @@ body{
 </div>
 
 <script>
-function toggle(id){
-  const el=document.getElementById(id);
-  el.style.display = el.style.display==="block" ? "none":"block";
-}
+  document.getElementById('registrationForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-function register(className,amount){
-  localStorage.setItem("className",className);
-  localStorage.setItem("amount",amount);
-  window.location.href="registration.html";
-}
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const batch = document.getElementById('batch').value.trim();
+    const month = document.getElementById('month').value;
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const payment = document.getElementById('payment').value.trim();
+
+    // Validate fields
+    if (!name || !batch || !month || !whatsapp || !payment) {
+      alert("Please fill all fields correctly.");
+      return;
+    }
+
+    // 🔹 SAVE REGISTRATION DETAILS
+    localStorage.setItem('name', name);
+    localStorage.setItem('batch', batch);
+    localStorage.setItem('month', month);
+    localStorage.setItem('whatsapp', whatsapp);
+    localStorage.setItem('payment', payment);
+
+    // 🔹 KEEP CLASS DETAILS (THIS IS WHAT YOU ASKED)
+    // These were already set in classes.html
+    // We are NOT overwriting, just ensuring they exist
+    const className = localStorage.getItem("className");
+    const amount = localStorage.getItem("amount");
+
+    if (!className || !amount) {
+      alert("Please select a class first.");
+      window.location.href = "classes.html";
+      return;
+    }
+
+    // 🔹 MARK USER AS REGISTERED
+    localStorage.setItem('isRegistered', 'true');
+
+    // 🔹 REDIRECT TO PAYMENT PAGE
+    window.location.href = 'payment.html';
+  });
 </script>
 
 </body>
