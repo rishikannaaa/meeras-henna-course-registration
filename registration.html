@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meera's Henna Classes</title>
+<title>Registration</title>
 
 <style>
 body{
@@ -12,41 +12,33 @@ body{
   padding:20px;
 }
 
-.class-card{
+.form-container{
+  max-width:400px;
+  margin:auto;
   background:#fff;
+  padding:25px;
   border-radius:10px;
-  padding:20px;
-  margin-bottom:20px;
   box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 
-.class-title{
-  font-size:18px;
+label{
+  display:block;
+  margin-top:15px;
   font-weight:bold;
-  color:#b45f04;
-  cursor:pointer;
 }
 
-.chapters{
-  display:none;
-  margin-top:15px;
-  max-height:300px;
-  overflow-y:auto;
-}
-
-.chapter{
-  margin-bottom:10px;
-}
-
-.price{
-  font-weight:bold;
-  margin-top:15px;
-}
-
-.register-btn{
-  margin-top:15px;
+input,select{
   width:100%;
   padding:10px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+button{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
   background:#b45f04;
   color:white;
   border:none;
@@ -58,100 +50,56 @@ body{
 
 <body>
 
-<!-- CLASS 1 -->
-<div class="class-card">
-  <div class="class-title" onclick="toggle('c1')">
-    Advance Class (Indian & Arabic)
-  </div>
+<div class="form-container">
+<h2 style="text-align:center;color:#b45f04;">Register</h2>
 
-  <div class="chapters" id="c1">
-    <div class="chapter">Chapter 1 – Holding Henna, Pressing Control</div>
-    <div class="chapter">Chapter 2 – Lines, Base Flowers, Paisley</div>
-    <div class="chapter">Chapter 3 – Petals, Shading, Leaves</div>
-    <div class="chapter">Chapter 4 – Fillings, Main Designs</div>
-    <div class="chapter">Chapter 5 – Arabic Veins, Fillers</div>
-    <div class="chapter">Chapter 6 – Flowers, Borders</div>
-    <div class="chapter">Chapter 7 – Floral Designs</div>
-    <div class="chapter">Chapter 8 – Tips & Tricks</div>
-    <div class="chapter">Chapter 9 – Patterns</div>
-    <div class="chapter">Chapter 10 – 3D & Mandala</div>
+<form id="registrationForm">
+  <label>Name</label>
+  <input type="text" id="name" required>
 
-    <div class="price">₹299 / month</div>
-    <button class="register-btn" onclick="register('Advance Class (Indian & Arabic)',299)">
-      Register Now
-    </button>
-  </div>
-</div>
+  <label>Batch No</label>
+  <input type="text" id="batch" required>
 
-<!-- CLASS 2 -->
-<div class="class-card">
-  <div class="class-title" onclick="toggle('c2')">
-    Advance Class (Five Country Designs)
-  </div>
+  <label>Payment Month</label>
+  <select id="month" required>
+    <option value="">Select Month</option>
+    <option>January</option>
+    <option>February</option>
+    <option>March</option>
+    <option>April</option>
+    <option>May</option>
+    <option>June</option>
+    <option>July</option>
+    <option>August</option>
+    <option>September</option>
+    <option>October</option>
+    <option>November</option>
+    <option>December</option>
+  </select>
 
-  <div class="chapters" id="c2">
-    <div class="chapter">Chapter 1 – Holding Henna & Basics</div>
-    <div class="chapter">Chapter 2 – Lines & Flowers</div>
-    <div class="chapter">Chapter 3 – Shading & Leaves</div>
-    <div class="chapter">Chapter 4 – Veins & Borders</div>
-    <div class="chapter">Chapter 5 – Moroccan Designs</div>
-    <div class="chapter">Chapter 6 – Arabic 3D Veins</div>
-    <div class="chapter">Chapter 7 – Floral Bunches</div>
-    <div class="chapter">Chapter 8 – Mandala</div>
-    <div class="chapter">Chapter 9 – Party Designs</div>
-    <div class="chapter">Chapter 10 – Bridal Techniques</div>
-    <div class="chapter">Chapter 11 – Business & Pricing</div>
-    <div class="chapter">Chapter 12 – Practice & Tests</div>
+  <label>WhatsApp Number</label>
+  <input type="tel" id="whatsapp" pattern="[0-9]{10}" required>
 
-    <div class="price">₹365 / month</div>
-    <button class="register-btn" onclick="register('Advance Class (Five Country Designs)',365)">
-      Register Now
-    </button>
-  </div>
+  <label>Payment Number</label>
+  <input type="tel" id="payment" pattern="[0-9]{10}" required>
+
+  <button type="submit">Continue to Payment</button>
+</form>
 </div>
 
 <script>
-  document.getElementById('registrationForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+document.getElementById("registrationForm").addEventListener("submit",function(e){
+  e.preventDefault();
 
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const batch = document.getElementById('batch').value.trim();
-    const month = document.getElementById('month').value;
-    const whatsapp = document.getElementById('whatsapp').value.trim();
-    const payment = document.getElementById('payment').value.trim();
+  localStorage.setItem("name",name.value.trim());
+  localStorage.setItem("batch",batch.value.trim());
+  localStorage.setItem("month",month.value);
+  localStorage.setItem("whatsapp",whatsapp.value.trim());
+  localStorage.setItem("payment",payment.value.trim());
+  localStorage.setItem("isRegistered","true");
 
-    // Validate fields
-    if (!name || !batch || !month || !whatsapp || !payment) {
-      alert("Please fill all fields correctly.");
-      return;
-    }
-
-    // 🔹 SAVE REGISTRATION DETAILS
-    localStorage.setItem('name', name);
-    localStorage.setItem('batch', batch);
-    localStorage.setItem('month', month);
-    localStorage.setItem('whatsapp', whatsapp);
-    localStorage.setItem('payment', payment);
-
-    // 🔹 KEEP CLASS DETAILS (THIS IS WHAT YOU ASKED)
-    // These were already set in classes.html
-    // We are NOT overwriting, just ensuring they exist
-    const className = localStorage.getItem("className");
-    const amount = localStorage.getItem("amount");
-
-    if (!className || !amount) {
-      alert("Please select a class first.");
-      window.location.href = "classes.html";
-      return;
-    }
-
-    // 🔹 MARK USER AS REGISTERED
-    localStorage.setItem('isRegistered', 'true');
-
-    // 🔹 REDIRECT TO PAYMENT PAGE
-    window.location.href = 'payment.html';
-  });
+  window.location.href="payment.html";
+});
 </script>
 
 </body>
