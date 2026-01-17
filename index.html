@@ -1,101 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Meera's Henna Art</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fffaf5;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Meera's Henna Art</title>
 
-    .hero {
-      text-align: center;
-      margin-top: 50px;
-      flex: 1;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #fffaf5;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    h1 {
-      color: #b45f04;
-      font-size: 36px;
-    }
+nav {
+  background: #b45f04;
+  padding: 12px 20px;
+}
 
-    p {
-      font-size: 18px;
-      margin-top: 20px;
-    }
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      margin-top: 30px;
-      background-color: #b45f04;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
+.hero {
+  text-align: center;
+  margin-top: 60px;
+  flex: 1;
+  padding: 20px;
+}
 
-    .btn:hover {
-      background-color: #8e4c02;
-    }
+h1 {
+  color: #b45f04;
+  font-size: 36px;
+}
 
-    nav {
-      background: #b45f04;
-      padding: 10px 20px;
-    }
+p {
+  font-size: 18px;
+  margin-top: 20px;
+}
 
-    nav a {
-      color: white;
-      margin-right: 15px;
-      text-decoration: none;
-    }
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  margin-top: 30px;
+  background-color: #b45f04;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
 
-    footer {
-      background-color: #f4e3d7;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      color: #5a3e1b;
-      border-top: 1px solid #ddd;
-      margin-top: auto;
-    }
-  </style>
+.btn:hover {
+  background-color: #8e4c02;
+}
+
+footer {
+  background-color: #f4e3d7;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #5a3e1b;
+  border-top: 1px solid #ddd;
+}
+</style>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="registration.html">Register</a>
-    <a href="payment.html" onclick="return checkAccess()">Payment</a>
-  </nav>
 
-  <div class="hero">
-    <h1>Welcome to Meera's Henna Art 🌿</h1>
-    <p>Join our beginner to advanced henna design classes. Learn the art, express your creativity, and start your own journey!</p>
-    <a href="registration.html" class="btn">Register Now</a>
-  </div>
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="classes.html">Classes</a>
+  <a href="payment.html" onclick="return checkAccess()">Payment</a>
+</nav>
 
-  <footer>
-    <p><strong>📞 Contact Us</strong></p>
-    <p>📧 Email: meerashennaart@gmail.com</p>
-    <p>📱 Phone: +91 98765 43210</p>
-    <p>💬 For any queries, feel free to reach out anytime!</p>
-  </footer>
+<!-- HERO -->
+<div class="hero">
+  <h1>Welcome to Meera's Henna Art 🌿</h1>
+  <p>
+    Join our beginner to advanced henna design classes.  
+    Learn the art, express your creativity, and start your own journey!
+  </p>
 
-  <script>
-    function checkAccess() {
-      if (localStorage.getItem('isRegistered') !== 'true') {
-        alert("Please register first!");
-        return false;
-      }
-      return true;
-    }
-  </script>
+  <a href="classes.html" class="btn">View Classes</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>📞 Contact Us</strong></p>
+  <p>📧 Email: meerashennaart@gmail.com</p>
+  <p>📱 Phone: +91 98765 43210</p>
+  <p>💬 For any queries, feel free to reach out anytime!</p>
+</footer>
+
+<script>
+function checkAccess() {
+  if (localStorage.getItem('isRegistered') !== 'true') {
+    alert("Please register for a class first!");
+    return false;
+  }
+  return true;
+}
+</script>
+
 </body>
 </html>
