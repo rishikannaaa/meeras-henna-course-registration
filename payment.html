@@ -75,12 +75,12 @@ button{
 </div>
 
 <script>
-/* 🔐 BLOCK DIRECT ACCESS */
-if(localStorage.getItem("isRegistered")!=="true"){
-  window.location.href="registration.html";
+/* 🔐 Block direct access */
+if (localStorage.getItem("isRegistered") !== "true") {
+  window.location.href = "registration.html";
 }
 
-/* 📌 LOAD DATA */
+/* 📌 Load data */
 const name = localStorage.getItem("name");
 const batch = localStorage.getItem("batch");
 const className = localStorage.getItem("className");
@@ -88,7 +88,7 @@ const amount = localStorage.getItem("amount");
 const whatsapp = localStorage.getItem("whatsapp");
 const payment = localStorage.getItem("payment");
 
-/* 🖥️ DISPLAY */
+/* 🖥️ Display */
 sName.innerText = name;
 sBatch.innerText = batch;
 sClass.innerText = className;
@@ -96,22 +96,20 @@ sAmount.innerText = amount;
 sWhatsapp.innerText = whatsapp;
 sPayment.innerText = payment;
 
-/* 💳 UPI LINK */
-upiLink.href = `upi://pay?pa=rishikanna.sivakumar.off@okhdfcbank&pn=MeeraHenna&am=${amount}&cu=INR`;
-
-/* 📲 CONFIRM */
+/* 📲 Confirm payment */
 function confirmPayment(){
-  const msg =
+  const message =
 `Hi, I am ${name}.
-I have paid ₹${amount} for
-${className}.
-My WhatsApp: ${whatsapp}
+I have paid ₹${amount}.
+Class: ${className}
 Batch: ${batch}
+WhatsApp: ${whatsapp}
+Payment No: ${payment}
 
 Please confirm my registration.`;
 
   window.open(
-    `https://wa.me/919514301061?text=${encodeURIComponent(msg)}`,
+    "https://wa.me/919514301061?text=" + encodeURIComponent(message),
     "_blank"
   );
 }
