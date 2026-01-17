@@ -1,130 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Meera's Henna Registration</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff8f2;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meera's Henna Classes</title>
 
-    .form-container {
-      background: #fff;
-      padding: 25px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#fff8f2;
+  padding:20px;
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #b45f04;
-    }
+.class-card{
+  background:#fff;
+  border-radius:10px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,0,0,.1);
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+.class-title{
+  font-size:18px;
+  font-weight:bold;
+  color:#b45f04;
+  cursor:pointer;
+}
 
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+.chapters{
+  display:none;
+  margin-top:15px;
+  max-height:300px;
+  overflow-y:auto;
+}
 
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background-color: #b45f04;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+.chapter{
+  margin-bottom:10px;
+}
 
-    button:hover {
-      background-color: #8e4c02;
-    }
-  </style>
+.price{
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.register-btn{
+  margin-top:15px;
+  width:100%;
+  padding:10px;
+  background:#b45f04;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-  <div class="form-container">
-    <h2>Register for Mehndi</h2>
-    <form id="registrationForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required />
 
-      <label for="batch">Batch Number:</label>
-      <input type="text" id="batch" required />
-
-      <label for="month">Payment Month:</label>
-      <select id="month" required>
-        <option value="">-- Select Month --</option>
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-        <option value="April">April</option>
-        <option value="May">May</option>
-        <option value="June">June</option>
-        <option value="July">July</option>
-        <option value="August">August</option>
-        <option value="September">September</option>
-        <option value="October">October</option>
-        <option value="November">November</option>
-        <option value="December">December</option>
-      </select>
-
-      <label for="whatsapp">WhatsApp Number:</label>
-      <input type="tel" id="whatsapp" pattern="[0-9]{10}" required placeholder="10-digit number" />
-
-      <label for="payment">Payment Number:</label>
-      <input type="tel" id="payment" pattern="[0-9]{10}" required placeholder="GPay/PhonePe number" />
-
-      <button type="submit">Submit</button>
-    </form>
+<!-- CLASS 1 -->
+<div class="class-card">
+  <div class="class-title" onclick="toggle('c1')">
+    Advance Class (Indian & Arabic)
   </div>
 
-  <script>
-    document.getElementById('registrationForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+  <div class="chapters" id="c1">
+    <div class="chapter">Chapter 1 – Holding Henna, Pressing Control</div>
+    <div class="chapter">Chapter 2 – Lines, Base Flowers, Paisley</div>
+    <div class="chapter">Chapter 3 – Petals, Shading, Leaves</div>
+    <div class="chapter">Chapter 4 – Fillings, Main Designs</div>
+    <div class="chapter">Chapter 5 – Arabic Veins, Fillers</div>
+    <div class="chapter">Chapter 6 – Flowers, Borders</div>
+    <div class="chapter">Chapter 7 – Floral Designs</div>
+    <div class="chapter">Chapter 8 – Tips & Tricks</div>
+    <div class="chapter">Chapter 9 – Patterns</div>
+    <div class="chapter">Chapter 10 – 3D & Mandala</div>
 
-      // Get form values
-      const name = document.getElementById('name').value.trim();
-      const batch = document.getElementById('batch').value.trim();
-      const month = document.getElementById('month').value;
-      const whatsapp = document.getElementById('whatsapp').value.trim();
-      const payment = document.getElementById('payment').value.trim();
+    <div class="price">₹299 / month</div>
+    <button class="register-btn" onclick="register('Advance Class (Indian & Arabic)',299)">
+      Register Now
+    </button>
+  </div>
+</div>
 
-      // Validate fields
-      if (!name || !batch || !month || !whatsapp || !payment) {
-        alert("Please fill all fields correctly.");
-        return;
-      }
+<!-- CLASS 2 -->
+<div class="class-card">
+  <div class="class-title" onclick="toggle('c2')">
+    Advance Class (Five Country Designs)
+  </div>
 
-      // Save to localStorage
-      localStorage.setItem('name', name);
-      localStorage.setItem('batch', batch);
-      localStorage.setItem('month', month);
-      localStorage.setItem('whatsapp', whatsapp);
-      localStorage.setItem('payment', payment);
-      localStorage.setItem('isRegistered', 'true');
+  <div class="chapters" id="c2">
+    <div class="chapter">Chapter 1 – Holding Henna & Basics</div>
+    <div class="chapter">Chapter 2 – Lines & Flowers</div>
+    <div class="chapter">Chapter 3 – Shading & Leaves</div>
+    <div class="chapter">Chapter 4 – Veins & Borders</div>
+    <div class="chapter">Chapter 5 – Moroccan Designs</div>
+    <div class="chapter">Chapter 6 – Arabic 3D Veins</div>
+    <div class="chapter">Chapter 7 – Floral Bunches</div>
+    <div class="chapter">Chapter 8 – Mandala</div>
+    <div class="chapter">Chapter 9 – Party Designs</div>
+    <div class="chapter">Chapter 10 – Bridal Techniques</div>
+    <div class="chapter">Chapter 11 – Business & Pricing</div>
+    <div class="chapter">Chapter 12 – Practice & Tests</div>
 
-      // Redirect to payment page
-      window.location.href = 'payment.html';
-    });
-  </script>
+    <div class="price">₹365 / month</div>
+    <button class="register-btn" onclick="register('Advance Class (Five Country Designs)',365)">
+      Register Now
+    </button>
+  </div>
+</div>
+
+<script>
+function toggle(id){
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==="block" ? "none":"block";
+}
+
+function register(className,amount){
+  localStorage.setItem("className",className);
+  localStorage.setItem("amount",amount);
+  window.location.href="registration.html";
+}
+</script>
+
 </body>
 </html>
