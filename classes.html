@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meera's Henna Classes</title>
+<style>
+body{font-family:Arial,sans-serif;background:#fff8f2;padding:20px;}
+.class-card{background:#fff;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 0 10px rgba(0,0,0,.1);}
+.class-title{font-size:18px;font-weight:bold;color:#b45f04;cursor:pointer;}
+.chapters{display:none;margin-top:15px;max-height:300px;overflow-y:auto;}
+.chapter{margin-bottom:8px;}
+.price{font-weight:bold;margin-top:15px;}
+.register-btn{margin-top:15px;width:100%;padding:10px;background:#b45f04;color:white;border:none;border-radius:6px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center;color:#b45f04;">Select Your Class</h2>
+
+<div class="class-card">
+  <div class="class-title" onclick="toggle('c1')">Advance Class (Indian & Arabic)</div>
+  <div class="chapters" id="c1">
+    <div class="chapter">Holding Henna & Pressing Control</div>
+    <div class="chapter">Lines, Base Flowers & Paisley</div>
+    <div class="chapter">Petals, Shading & Leaves</div>
+    <div class="chapter">Arabic Veins & Fillings</div>
+    <div class="price">₹299 / month</div>
+    <button class="register-btn" onclick="registerClass('Advance Class (Indian & Arabic)',299)">Register Now</button>
+  </div>
+</div>
+
+<div class="class-card">
+  <div class="class-title" onclick="toggle('c2')">Advance Class (Five Country Designs)</div>
+  <div class="chapters" id="c2">
+    <div class="chapter">Country Designs Basics</div>
+    <div class="chapter">Moroccan & Arabic Styles</div>
+    <div class="chapter">Bridal & Party Designs</div>
+    <div class="chapter">Mandala & 3D</div>
+    <div class="price">₹365 / month</div>
+    <button class="register-btn" onclick="registerClass('Advance Class (Five Country Designs)',365)">Register Now</button>
+  </div>
+</div>
+
+<script>
+function toggle(id){
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==="block"?"none":"block";
+}
+function registerClass(className,amount){
+  localStorage.setItem("className",className);
+  localStorage.setItem("amount",amount);
+  window.location.href="registration.html";
+}
+</script>
+
+</body>
+</html>
