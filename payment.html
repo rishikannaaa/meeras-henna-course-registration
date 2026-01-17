@@ -1,229 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meera's Henna Payment</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff8f2;
-      padding: 20px;
-      color: #333;
-      display: flex;
-      justify-content: center;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meera's Henna Payment</title>
 
-    .container {
-      max-width: 450px;
-      width: 100%;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#fff8f2;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+}
 
-    h2 {
-      text-align: center;
-      color: #b45f04;
-      margin-bottom: 20px;
-    }
+.container{
+  max-width:450px;
+  width:100%;
+  background:#fff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(0,0,0,.1);
+}
 
-    label {
-      font-weight: bold;
-      margin-top: 15px;
-      display: block;
-    }
+h2{
+  text-align:center;
+  color:#b45f04;
+}
 
-    select, input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+.summary p{
+  margin:8px 0;
+  font-size:14px;
+}
 
-    img {
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 10px;
-    }
+img{
+  width:100%;
+  margin-top:15px;
+  border-radius:10px;
+}
 
-    .pay-btn {
-      margin-top: 25px;
-      width: 100%;
-      padding: 12px;
-      background-color: #b45f04;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-
-    .pay-btn:enabled {
-      cursor: pointer;
-      opacity: 1;
-    }
-
-    .pay-btn:hover:enabled {
-      background-color: #8e4c02;
-    }
-
-    .payment-link {
-      margin-top: 10px;
-      display: block;
-      text-align: center;
-      color: #007bff;
-      text-decoration: underline;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  </style>
+button{
+  margin-top:20px;
+  width:100%;
+  padding:12px;
+  background:#b45f04;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h2>Choose Your Course</h2>
 
-    <label for="amount">Course Price</label>
-    <select id="amount" required>
-      <option value="">-- Select Price --</option>
-      <option value="399">₹399 - Basic</option>
-      <option value="499">₹499 - Bridal</option>
-      <option value="599">₹599 - Premium</option>
-    </select>
+<div class="container">
+<h2>Payment Summary</h2>
 
-    <label for="platform">Payment App</label>
-    <select id="platform" required>
-      <option value="">-- Choose Platform --</option>
-      <option value="GPay">GPay</option>
-      <option value="PhonePe">PhonePe</option>
-      <option value="Paytm">Paytm</option>
-    </select>
+<div class="summary">
+  <p><b>Name:</b> <span id="sName"></span></p>
+  <p><b>Batch:</b> <span id="sBatch"></span></p>
+  <p><b>Class:</b> <span id="sClass"></span></p>
+  <p><b>Amount:</b> ₹<span id="sAmount"></span> / month</p>
+  <p><b>WhatsApp:</b> <span id="sWhatsapp"></span></p>
+  <p><b>Payment No:</b> <span id="sPayment"></span></p>
+</div>
 
-    <label for="number">Your WhatsApp Number</label>
-    <input type="text" id="userNumber" placeholder="9080XXXXXX" required />
+<a id="upiLink" target="_blank">
+  <img src="https://i.imgur.com/Cnql9UO.png" alt="UPI QR Code">
+</a>
 
-    <a class="payment-link" id="upiLink" href="#" target="_blank">Click here to pay via UPI app</a>
+<button onclick="confirmPayment()">I’ve Paid</button>
+</div>
 
-    <img src="https://i.imgur.com/Cnql9UO.png" alt="QR Code for UPI Payment" />
+<script>
+/* 🔐 BLOCK DIRECT ACCESS */
+if(localStorage.getItem("isRegistered")!=="true"){
+  window.location.href="registration.html";
+}
 
-    <button class="pay-btn" onclick="sendConfirmation()" id="confirmBtn" disabled>I’ve Paid</button>
-  </div>
+/* 📌 LOAD DATA */
+const name = localStorage.getItem("name");
+const batch = localStorage.getItem("batch");
+const className = localStorage.getItem("className");
+const amount = localStorage.getItem("amount");
+const whatsapp = localStorage.getItem("whatsapp");
+const payment = localStorage.getItem("payment");
 
-  <script>
-    // Redirect if not registered
-    if (localStorage.getItem('isRegistered') !== 'true') {
-      window.location.href = 'registration.html';
-    }
+/* 🖥️ DISPLAY */
+sName.innerText = name;
+sBatch.innerText = batch;
+sClass.innerText = className;
+sAmount.innerText = amount;
+sWhatsapp.innerText = whatsapp;
+sPayment.innerText = payment;
 
-    const amountField = document.getElementById("amount");
-    const platformField = document.getElementById("platform");
-    const numberField = document.getElementById("userNumber");
-    const payBtn = document.getElementById("confirmBtn");
-    const upiLink = document.getElementById("upiLink");
+/* 💳 UPI LINK */
+upiLink.href = `upi://pay?pa=rishikanna.sivakumar.off@okhdfcbank&pn=MeeraHenna&am=${amount}&cu=INR`;
 
-    // Disable pay button initially
-    payBtn.disabled = true;
-    payBtn.style.opacity = "0.6";
-    payBtn.style.cursor = "not-allowed";
+/* 📲 CONFIRM */
+function confirmPayment(){
+  const msg =
+`Hi, I am ${name}.
+I have paid ₹${amount} for
+${className}.
+My WhatsApp: ${whatsapp}
+Batch: ${batch}
 
-    let upiClicked = false;
+Please confirm my registration.`;
 
-    // Update UPI link function
-    function updateUpiLink(amount) {
-      const upiURL = `upi://pay?pa=rishikanna.sivakumar.off@okhdfcbank&pn=MeeraHenna&am=${amount}&cu=INR`;
-      upiLink.href = upiURL;
-      upiLink.textContent = amount ? `Click here to pay ₹${amount} now` : "Click here to pay via UPI app";
-    }
+  window.open(
+    `https://wa.me/919514301061?text=${encodeURIComponent(msg)}`,
+    "_blank"
+  );
+}
+</script>
 
-    // Validate all inputs and UPI click
-    function updateButtonState() {
-      const amount = amountField.value;
-      const platform = platformField.value;
-      const number = numberField.value.trim();
-
-      const isNumberValid = /^\d{10}$/.test(number);
-
-      if (amount && platform && isNumberValid && upiClicked) {
-        payBtn.disabled = false;
-        payBtn.style.opacity = "1";
-        payBtn.style.cursor = "pointer";
-      } else {
-        payBtn.disabled = true;
-        payBtn.style.opacity = "0.6";
-        payBtn.style.cursor = "not-allowed";
-      }
-    }
-
-    // Mark UPI as clicked when user clicks the link
-    upiLink.addEventListener("click", function () {
-      upiClicked = true;
-      updateButtonState();
-    });
-
-    // Load saved data on page load
-    window.onload = function () {
-      const savedAmount = localStorage.getItem("courseAmount");
-      const savedPlatform = localStorage.getItem("paymentPlatform");
-      const savedNumber = localStorage.getItem("userNumber");
-
-      if (savedAmount) {
-        amountField.value = savedAmount;
-        updateUpiLink(savedAmount);
-      } else {
-        updateUpiLink('');
-      }
-
-      if (savedPlatform) {
-        platformField.value = savedPlatform;
-      }
-
-      if (savedNumber) {
-        numberField.value = savedNumber;
-      }
-
-      updateButtonState();
-    };
-
-    // Update UPI link and localStorage on amount change
-    amountField.addEventListener("change", function () {
-      const val = this.value;
-      updateUpiLink(val);
-      localStorage.setItem("courseAmount", val);
-      upiClicked = false; // reset since amount changed
-      updateButtonState();
-    });
-
-    // Save platform and validate
-    platformField.addEventListener("change", function () {
-      localStorage.setItem("paymentPlatform", this.value);
-      updateButtonState();
-    });
-
-    // Validate number input and save
-    numberField.addEventListener("input", function () {
-      localStorage.setItem("userNumber", this.value.trim());
-      updateButtonState();
-    });
-
-    function sendConfirmation() {
-      const amount = amountField.value;
-      const platform = platformField.value;
-      const number = numberField.value.trim();
-
-      if (!amount || !platform || !number) {
-        alert("Please fill all fields before submitting.");
-        return;
-      }
-
-      alert("✅ Payment Successful!");
-
-      const message = `Hi, I’ve successfully paid ₹${amount} via ${platform}. My number is ${number}. Please confirm my registration.`;
-      const whatsappURL = `https://wa.me/919514301061?text=${encodeURIComponent(message)}`;
-      window.open(whatsappURL, '_blank');
-    }
-  </script>
 </body>
 </html>
